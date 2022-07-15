@@ -27,7 +27,16 @@ public class QueryProcessor {
             return "20545";
         } else if (query.contains("%20what%20is%200%20plus%2013")) {
             return "13";
-        } else {
+        } else if (query.contains("plus")) {
+            String[] plus = query.split("plus");
+            String[] number1Split = plus[0].split("%20");
+            String[] number2Split = plus[1].split("%20");
+            String number1 = number1Split[number1Split.length-1];
+            String number2 = number2Split[0];
+            int number = Integer.parseInt(number1) + Integer.parseInt(number2);
+            return String.valueOf(number);
+        }
+        else {
             return "";
         }
     }
